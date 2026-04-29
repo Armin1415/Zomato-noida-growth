@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomato's Noida Growth | Hamza Ali</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        .zomato-red { color: #CB202D; }
+        .zomato-bg { background-color: #CB202D; }
+        .card:hover { transform: translateY(-5px); transition: 0.3s; }
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #CB202D;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #chat-window {
+            transition: all 0.3s ease-in-out;
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #chat-window.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- HERO SECTION -->
+    <header class="h-screen flex flex-col justify-center items-center text-center px-4 bg-white border-b-8 border-[#CB202D]">
+        <h1 class="text-6xl md:text-8xl font-bold mb-4 text-gray-900">Noida <span class="zomato-red">Growth</span></h1>
+        <p class="text-xl md:text-2xl text-gray-500 max-w-2xl">A Hyper-Local Strategy to Dominate the Sector 62 IT Corridor through Operational Excellence.</p>
+        <div class="mt-10 animate-bounce">
+            <span class="text-gray-400">Scroll to Explore the Strategy</span>
+            <svg class="w-6 h-6 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+        <div class="flex flex-wrap justify-center gap-4 mt-12">
+            <a href="#ai-lab" class="px-8 py-4 bg-[#CB202D] text-white rounded-full font-bold hover:shadow-2xl transition-all">Try the AI Growth Lab ✨</a>
+            <a href="#group-orders" class="px-8 py-4 bg-black text-white rounded-full font-bold hover:shadow-2xl transition-all">Multi-Restaurant Groups 🤝</a>
+        </div>
+    </header>
+
+    <!-- THE PROBLEM -->
+    <section class="py-20 px-8 max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12 border-l-8 border-[#CB202D] pl-6">The "Gate-to-Desk" Bottleneck</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-lg space-y-6">
+                <p>Noida IT Parks (Logix, Stellar, HCL) face massive delivery friction. Riders spend an average of <strong>12-15 minutes</strong> navigating security protocols and elevators.</p>
+                <p class="font-semibold text-xl zomato-red">The Friction Result:</p>
+                <p>Users switch to office canteens to save time. This leads to "Order Fatigue" and decreased user retention during peak lunch hours (1 PM - 2 PM).</p>
+            </div>
+            
+            <div class="relative h-64 rounded-2xl flex items-center justify-center overflow-hidden group shadow-2xl border border-gray-200">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" alt="Modern Tech Park Hub" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
+                <div class="relative p-8 text-center z-10">
+                    <p class="font-bold text-white text-xl mb-2 drop-shadow-md uppercase tracking-wider">High Friction Zones Identified</p>
+                    <p class="text-sm text-white font-medium tracking-wide drop-shadow-md">Sector 62 Cluster | Sector 142 Corridor | Sector 125 Hub</p>
+                    <div class="mt-4 w-16 h-1 bg-[#CB202D] mx-auto rounded-full shadow-lg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STRATEGIC SECTIONS -->
+    <section class="zomato-bg py-20 px-8 text-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12">The 25-Minute Express Corridor</h2>
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- 1. BATCHING WITH AI INTEGRATION -->
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md flex flex-col h-full">
+                    <h3 class="text-2xl font-bold mb-4">1. Batching</h3>
+                    <p class="mb-6 flex-grow">Incentivizing building-level orders from Sector 63 kitchen clusters to nudge behavior toward batched deliveries, sharing logistics savings with customers while solving gate bottlenecks.</p>
+                    
+                    <div class="bg-white/20 p-4 rounded-xl mt-4 border border-white/30">
+                        <p class="text-xs font-bold uppercase mb-2 tracking-widest text-white/80">Batching Optimizer ✨</p>
+                        <input id="batch-building" type="text" placeholder="e.g. Logix Cyber Park" class="w-full bg-white/10 border border-white/20 p-2 text-sm rounded mb-2 placeholder-white/50 text-white focus:outline-none">
+                        <button onclick="optimizeBatching()" id="batch-btn" class="w-full bg-white text-[#CB202D] py-2 rounded font-bold text-xs hover:bg-gray-100 transition-colors flex justify-center items-center">
+                            Calculate Incentives ✨
+                        </button>
+                        <div id="batch-output" class="hidden mt-3 text-xs leading-relaxed border-t border-white/20 pt-3 text-white/90"></div>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md">
+                    <h3 class="text-2xl font-bold mb-4">2. Drop-Zones</h3>
+                    <p>Collaborating with facility managers to establish "Zomato Drop Counters" at main gates, eliminating the elevator lag for the final leg of the delivery journey.</p>
+                </div>
+
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-md">
+                    <h3 class="text-2xl font-bold mb-4">3. Power Menus</h3>
+                    <p>Working with Anchor Partners like <strong>Corporate Dhaba</strong> to curate "5-Minute Prep" lunch bowls designed specifically for office desk convenience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: GROUP ORDERS -->
+    <section id="group-orders" class="py-20 px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 border-l-8 border-[#CB202D] pl-6">The Power of Proximity: Cluster Group Orders</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Why Order Solo When You Can Sync?</h3>
+                    <p class="text-gray-600 mb-6">Traditional group orders are limited to one restaurant. My strategy introduces <strong>"Cluster Sync"</strong>—allowing teammates in an IT park to order from different restaurants in the same geographic hub while still being batched to a single rider.</p>
+                    <div class="bg-red-50 p-6 rounded-2xl border border-red-100">
+                        <p class="font-bold zomato-red mb-2">The Customer Incentive:</p>
+                        <p class="text-sm italic text-gray-700">"Order from any restaurant in the 'Sector 63 Express Cluster' and get Zero Delivery Fee for your entire office floor!"</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-8 rounded-3xl border border-gray-200">
+                    <h4 class="text-xl font-bold mb-6 flex items-center">
+                        <span class="mr-3">📍</span> ✨ Cluster Discovery Tool (AI)
+                    </h4>
+                    <p class="text-sm text-gray-600 mb-6">Simulate identifying a "Cluster Combo" for a specific Noida sector.</p>
+                    
+                    <select id="cluster-sector" class="w-full p-4 bg-white border border-gray-200 rounded-xl mb-6">
+                        <option value="Sector 62 (Near Logix Cyber Park)">Sector 62 (Logix area)</option>
+                        <option value="Sector 63 (Block C/D Kitchen Hubs)">Sector 63 (Kitchen Hubs)</option>
+                        <option value="Sector 142 (Advant Navis Corridor)">Sector 142 (Advant area)</option>
+                        <option value="Sector 125 (Amity/Expressway offices)">Sector 125 (Offices area)</option>
+                    </select>
+
+                    <button onclick="generateCluster()" id="cluster-btn" class="w-full py-4 bg-black text-white rounded-xl font-bold hover:bg-gray-800 transition-colors flex justify-center items-center">
+                        Suggest Cluster Combo ✨
+                    </button>
+
+                    <div id="cluster-result" class="mt-8 p-6 bg-green-50 rounded-2xl hidden text-sm leading-relaxed whitespace-pre-wrap text-gray-800 border border-green-100"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI GROWTH LAB SECTION -->
+    <section id="ai-lab" class="py-20 px-8 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">✨ AI Growth Lab</h2>
+                <p class="text-xl text-gray-600">Advanced simulations using the Gemini API.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-200">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <span class="mr-3">🚀</span> AI Experiment Designer
+                    </h3>
+                    <p class="text-gray-600 mb-6">Select a friction point to generate a 4-week execution plan.</p>
+                    
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Select Friction Point:</label>
+                    <select id="friction-select" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl mb-6">
+                        <option value="High cancellation rates at Sector 142 main gates">High gate cancellations (Sector 142)</option>
+                        <option value="Low lunch-hour repeat orders in Sector 62 IT Parks">Low repeat orders (Sector 62)</option>
+                        <option value="Poor restaurant discoverability in Sector 63 Cloud Kitchens">Discovery issues (Sector 63)</option>
+                        <option value="30+ minute delivery lag for Sector 125 office goers">Delivery lag (Sector 125)</option>
+                    </select>
+
+                    <button onclick="generateExperiment()" id="exp-btn" class="w-full py-4 bg-black text-white rounded-xl font-bold hover:bg-gray-800 transition-colors flex justify-center items-center">
+                        Generate Experiment ✨
+                    </button>
+
+                    <div id="exp-result" class="mt-8 p-6 bg-blue-50 rounded-2xl hidden text-sm whitespace-pre-wrap text-gray-800 border border-blue-100"></div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-200">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <span class="mr-3">📱</span> Local Campaign Generator
+                    </h3>
+                    <p class="text-gray-600 mb-6">Draft hyper-local copy for any Noida restaurant.</p>
+                    
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Restaurant Name:</label>
+                    <input type="text" id="restaurant-input" placeholder="e.g. Corporate Dhaba" class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl mb-6">
+
+                    <button onclick="generateCampaign()" id="camp-btn" class="w-full py-4 zomato-bg text-white rounded-xl font-bold hover:opacity-90 transition-opacity flex justify-center items-center">
+                        Draft Campaign ✨
+                    </button>
+
+                    <div id="camp-result" class="mt-8 p-6 bg-red-50 rounded-2xl hidden text-sm italic whitespace-pre-wrap text-gray-800 border border-red-100"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="py-20 px-8 max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12 border-l-8 border-[#CB202D] pl-6">Strategic Anchor Partners</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="p-6 bg-white shadow-lg rounded-xl border border-gray-100 card">
+                <h4 class="font-bold text-lg zomato-red">Corporate Dhaba</h4>
+                <p class="text-sm text-gray-500">Sector 62</p>
+                <p class="mt-4 text-sm">Daily staple for recurring office users.</p>
+            </div>
+            <div class="p-6 bg-white shadow-lg rounded-xl border border-gray-100 card">
+                <h4 class="font-bold text-lg zomato-red">Nazeer Foods</h4>
+                <p class="text-sm text-gray-500">Sector 63</p>
+                <p class="mt-4 text-sm">High-speed prep for meat lovers.</p>
+            </div>
+            <div class="p-6 bg-white shadow-lg rounded-xl border border-gray-100 card">
+                <h4 class="font-bold text-lg zomato-red">Rana Dhaba</h4>
+                <p class="text-sm text-gray-500">Sector 22</p>
+                <p class="mt-4 text-sm">Budget-friendly volume driver.</p>
+            </div>
+            <div class="p-6 bg-white shadow-lg rounded-xl border border-gray-100 card">
+                <h4 class="font-bold text-lg zomato-red">Biryani By Kilo</h4>
+                <p class="text-sm text-gray-500">Sector 63</p>
+                <p class="mt-4 text-sm">Team lunch and premium orders.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER WITH THE UPLOADED PHOTO -->
+    <footer class="relative py-32 px-8 text-center overflow-hidden min-h-[600px] flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+            <img src="IMG-20260429-WA0010~353.jpg" 
+                 alt="Hamza Ali with Deepinder Goyal" 
+                 onerror="this.src='https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1600'"
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+        
+        <div class="relative z-10 text-white max-w-4xl mx-auto bg-black/30 p-8 rounded-3xl backdrop-blur-sm border border-white/10">
+            <div class="mb-8">
+                <span class="bg-[#CB202D] text-white px-6 py-2 rounded-full text-xs font-bold shadow-lg border border-red-400 uppercase tracking-widest">
+                    Direct Engagement: Meeting Zomato Leadership
+                </span>
+            </div>
+            <!-- UPDATED TITLE HERE -->
+            <h2 class="text-5xl font-bold mb-6 drop-shadow-xl">Zomato's Noida Growth</h2>
+            <p class="text-xl text-gray-100 mb-10 font-semibold uppercase tracking-widest">Hamza Ali | Growth Associate Applicant</p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium">
+                <a href="mailto:hamzaali658923@gmail.com" class="hover:text-[#CB202D] transition-colors bg-white/10 px-6 py-2 rounded-xl backdrop-blur-sm border border-white/20">hamzaali658923@gmail.com</a>
+                <span class="hover:text-white transition-colors bg-white/10 px-6 py-2 rounded-xl backdrop-blur-sm border border-white/20">9999898741</span>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-white/20 text-xs text-gray-300 font-medium">
+                Strategically Positioned for Local Operations & Growth Excellence
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI GROWTH MENTOR FLOATING CHAT -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="toggleChat()" class="bg-[#CB202D] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center">
+            <span id="chat-icon">✨</span>
+        </button>
+        
+        <div id="chat-window" class="absolute bottom-20 right-0 w-80 bg-white rounded-3xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
+            <div class="bg-[#CB202D] p-4 text-white font-bold text-sm flex justify-between items-center">
+                <span>AI Growth Mentor ✨</span>
+                <button onclick="toggleChat()" class="text-white/80 hover:text-white">✕</button>
+            </div>
+            <div id="chat-messages" class="flex-grow p-4 space-y-3 overflow-y-auto max-h-60 text-xs text-gray-700">
+                <p class="bg-gray-100 p-2 rounded-lg italic">Hello! I am your AI Growth Mentor. Ask me for strategy advice or how to handle specific Noida market hurdles!</p>
+            </div>
+            <div class="p-3 border-t border-gray-100 flex space-x-2">
+                <input id="chat-input" type="text" placeholder="Ask a growth question..." class="flex-grow p-2 text-xs bg-gray-50 rounded-lg focus:outline-none" onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                <button onclick="sendChatMessage()" class="bg-[#CB202D] text-white px-3 py-2 rounded-lg text-xs font-bold">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GEMINI API SCRIPT -->
+    <script>
+        const apiKey = "";
+        const model = "gemini-2.5-flash-preview-09-2025";
+
+        async function callGemini(userPrompt, systemInstruction) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemInstruction }] }
+            };
+            let retries = 0;
+            const maxRetries = 5;
+            while (retries < maxRetries) {
+                try {
+                    const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    const result = await response.json();
+                    return result.candidates?.[0]?.content?.parts?.[0]?.text || "Strategy unavailable.";
+                } catch (error) {
+                    retries++;
+                    if (retries === maxRetries) throw error;
+                    await new Promise(res => setTimeout(res, Math.pow(2, retries) * 1000));
+                }
+            }
+        }
+
+        async function optimizeBatching() {
+            const building = document.getElementById('batch-building').value || "unnamed office park";
+            const output = document.getElementById('batch-output');
+            const btn = document.getElementById('batch-btn');
+            btn.disabled = true; btn.innerHTML = `<span class="loader"></span> Calculating...`;
+            output.classList.add('hidden');
+            const systemPrompt = "You are a Logistics Optimizer at Zomato. The user will provide an office building name. Calculate a tiered 'Batching Incentive' structure (e.g. 1-5 orders, 6-15 orders, etc.). Explain how this saves on 'Cost per Delivery' and 'Gate Friction'. Be concise and use bullet points.";
+            try {
+                const response = await callGemini(`Calculate batching strategy for ${building} in Noida.`, systemPrompt);
+                output.innerText = response; output.classList.remove('hidden');
+            } catch (e) { output.innerText = "Error calculating batching strategy."; output.classList.remove('hidden'); }
+            finally { btn.disabled = false; btn.innerHTML = `Calculate Incentives ✨`; }
+        }
+
+        function toggleChat() { document.getElementById('chat-window').classList.toggle('active'); }
+
+        async function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if (!text) return;
+            const userMsg = document.createElement('p'); userMsg.className = 'bg-blue-50 p-2 rounded-lg ml-8 text-right'; userMsg.innerText = text;
+            messages.appendChild(userMsg); input.value = ''; messages.scrollTop = messages.scrollHeight;
+            const systemPrompt = "You are an AI Growth Mentor specialized in Zomato's expansion. You are helping Hamza Ali, a Growth Associate applicant, build his strategy for the Noida market. Give concise, high-impact advice on user acquisition, operational efficiency, and local stakeholder negotiation. Mention specific Noida sectors (62, 63, 142) if relevant.";
+            try {
+                const response = await callGemini(text, systemPrompt);
+                const botMsg = document.createElement('p'); botMsg.className = 'bg-gray-100 p-2 rounded-lg mr-8'; botMsg.innerText = response;
+                messages.appendChild(botMsg);
+            } catch (e) {
+                const errorMsg = document.createElement('p'); errorMsg.className = 'text-red-500 italic p-2'; errorMsg.innerText = "Mentor is offline. Check connection.";
+                messages.appendChild(errorMsg);
+            }
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        async function generateCluster() {
+            const select = document.getElementById('cluster-sector');
+            const resultDiv = document.getElementById('cluster-result');
+            const btn = document.getElementById('cluster-btn');
+            btn.disabled = true; btn.innerHTML = `<span class="loader"></span> Identifying...`;
+            resultDiv.classList.add('hidden');
+            const systemPrompt = "Suggest a 'Cluster Combo' for a Noida sector. 3-4 local restaurants close to each other for batched delivery. Include a 1-sentence team pitch.";
+            try {
+                const response = await callGemini(`Cluster for ${select.value}`, systemPrompt);
+                resultDiv.innerText = response; resultDiv.classList.remove('hidden');
+            } catch (e) { resultDiv.innerText = "Error identifying clusters."; resultDiv.classList.remove('hidden'); }
+            finally { btn.disabled = false; btn.innerHTML = `Suggest Cluster Combo ✨`; }
+        }
+
+        async function generateExperiment() {
+            const select = document.getElementById('friction-select');
+            const resultDiv = document.getElementById('exp-result');
+            const btn = document.getElementById('exp-btn');
+            btn.disabled = true; btn.innerHTML = `<span class="loader"></span> Designing...`;
+            resultDiv.classList.add('hidden');
+            const systemPrompt = "Design a 4-week Zomato growth experiment. Hypothesis, Execution, Metrics.";
+            try {
+                const response = await callGemini(`Solve: ${select.value}`, systemPrompt);
+                resultDiv.innerText = response; resultDiv.classList.remove('hidden');
+            } catch (e) { resultDiv.innerText = "Error designing experiment."; resultDiv.classList.remove('hidden'); }
+            finally { btn.disabled = false; btn.innerHTML = `Generate Experiment ✨`; }
+        }
+
+        async function generateCampaign() {
+            const input = document.getElementById('restaurant-input');
+            const resultDiv = document.getElementById('camp-result');
+            const btn = document.getElementById('camp-btn');
+            btn.disabled = true; btn.innerHTML = `<span class="loader"></span> Drafting...`;
+            resultDiv.classList.add('hidden');
+            const systemPrompt = "Write 2-3 catchy marketing SMS/WhatsApp drafts for a Noida restaurant lunch rush.";
+            try {
+                const response = await callGemini(`Draft for ${input.value || "Partner"}`, systemPrompt);
+                resultDiv.innerText = response; resultDiv.classList.remove('hidden');
+            } catch (e) { resultDiv.innerText = "Error drafting campaign."; resultDiv.classList.remove('hidden'); }
+            finally { btn.disabled = false; btn.innerHTML = `Draft Campaign ✨`; }
+        }
+    </script>
+</body>
+</html>
